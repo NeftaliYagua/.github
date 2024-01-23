@@ -1,1 +1,1 @@
-![](https://raw.githubusercontent.com/NeftaliYagua/NeftaliYagua/master/1688302736180.jpeg)
+![](https://raw.githubusercontent.com/NeftaliYagua/NeftaliYagua/master/1688302736180.jpeg){width='100%'}
