@@ -1,0 +1,203 @@
+---
+alwaysApply: true
+---
+# ⚠️ WORKFLOW Y GESTIÓN DE TAREAS - OBLIGATORIO ⚠️
+
+**ESTAS REGLAS SON LA LEY. DEBEN SEGUIRSE ESTRICTAMENTE EN TODO EL FLUJO DE TRABAJO.**
+
+## ⚠️ CRITICAL: Gestión de Incidencias y Tareas
+
+**IMPORTANT: SIEMPRE CREAR INCIDENCIAS EN GITHUB PARA SEGUIMIENTO**
+
+### Cuando el Usuario Solicita una Incidencia
+
+- ✅ **SIEMPRE** crear la incidencia real en GitHub usando `gh issue create`
+- ✅ **SIEMPRE** verificar que la incidencia se creó correctamente
+- ✅ **SIEMPRE** proporcionar el número de incidencia al usuario
+- ❌ **NUNCA** solo crear archivos markdown locales sin crear la incidencia
+- ❌ **NUNCA** asumir que un archivo local es suficiente
+
+### Comando Obligatorio
+
+```bash
+gh issue create --title "Título de la Incidencia" --body-file ruta/al/archivo.md
+```
+
+### Si Falla la Creación
+
+- ✅ **SIEMPRE** explicar por qué falló (labels no existen, permisos, etc.)
+- ✅ **SIEMPRE** intentar crear sin labels si es necesario
+- ✅ **SIEMPRE** informar al usuario del resultado
+- ❌ **NUNCA** dejar sin explicación si algo no se hizo
+
+## ⚠️ CRITICAL: Documentación en GitHub
+
+**IMPORTANT: DOCUMENTACIÓN DEBE IR EN GITHUB, NO SOLO EN ARCHIVOS LOCALES**
+
+### Ubicación de Documentación
+
+- ✅ **SIEMPRE** crear documentos en `discusiones/` para referencia local
+- ✅ **SIEMPRE** crear incidencias en GitHub para seguimiento
+- ✅ **SIEMPRE** usar GitHub Discussions para documentación extensa
+- ✅ **SIEMPRE** usar GitHub Issues para tareas y seguimiento
+- ✅ **SIEMPRE** usar GitHub Projects para planificación
+- ❌ **NUNCA** dejar documentación solo en archivos locales sin crear incidencia
+
+### Estructura de Documentación
+
+1. **Plan de Pruebas** → `discusiones/PLAN_PRUEBAS_*.md`
+2. **Plan de Trabajo** → `discusiones/PLAN_TRABAJO_*.md`
+3. **Incidencia de Seguimiento** → `discusiones/INCIDENCIA_*.md` + GitHub Issue
+4. **Análisis y Discusiones** → `discusiones/ANALISIS_*.md`
+
+## ⚠️ CRITICAL: Gestión de Tareas (TODO List)
+
+**IMPORTANT: USAR TODO LIST PARA SEGUIMIENTO DE FASES**
+
+### Organización de Tareas
+
+- ✅ **SIEMPRE** crear tareas en la consola del agente usando `todo_write`
+- ✅ **SIEMPRE** organizar tareas por fases
+- ✅ **SIEMPRE** actualizar estado de tareas (pending → in_progress → completed)
+- ✅ **SIEMPRE** marcar tareas como completadas inmediatamente después de terminarlas
+- ❌ **NUNCA** dejar tareas en "in_progress" cuando están completadas
+
+### Estructura de Tareas por Fase
+
+```php
+// Ejemplo de estructura
+[
+    'fase-0' => 'FASE 0: Preparación y Verificación Inicial',
+    'fase-1-red' => 'FASE 1.1 RED: Ejecutar pruebas y documentar fallas',
+    'fase-1-green' => 'FASE 1.2 GREEN: Implementar código mínimo',
+    'fase-1-refactor' => 'FASE 1.3 REFACTOR: Mejorar código',
+    // ... más fases
+]
+```
+
+## ⚠️ CRITICAL: Verificación Antes de Completar
+
+**IMPORTANT: NO DECLARAR COMPLETADO SIN VERIFICAR**
+
+### Checklist Obligatorio
+
+Antes de declarar cualquier tarea como completada:
+
+- [ ] ¿Se creó la incidencia en GitHub si se solicitó?
+- [ ] ¿Se actualizaron las tareas en la consola del agente?
+- [ ] ¿Se guardó la documentación en `discusiones/`?
+- [ ] ¿Se ejecutaron las pruebas?
+- [ ] ¿Se verificó que no hay errores de lint?
+- [ ] ¿Se explicó al usuario qué se hizo y qué no se hizo (y por qué)?
+
+## Flujo de Trabajo TDD por Fases
+
+### 1. Preparación
+
+- [ ] Crear plan de pruebas completo
+- [ ] Crear plan de trabajo por fases
+- [ ] Crear incidencia en GitHub
+- [ ] Crear tareas en consola del agente
+- [ ] Establecer baseline
+
+### 2. Por Cada Fase
+
+#### RED 🔴
+- [ ] Ejecutar pruebas
+- [ ] Documentar fallas
+- [ ] Actualizar incidencia
+- [ ] Actualizar tareas
+
+#### GREEN 🟢
+- [ ] Implementar código mínimo
+- [ ] Ejecutar pruebas después de cada cambio
+- [ ] Verificar que pasan
+- [ ] Actualizar incidencia
+- [ ] Actualizar tareas
+
+#### REFACTOR 🔵
+- [ ] Mejorar código
+- [ ] Eliminar duplicación
+- [ ] Verificar que pruebas siguen pasando
+- [ ] Ejecutar linters
+- [ ] Actualizar incidencia
+- [ ] Actualizar tareas
+
+### 3. Verificación Final
+
+- [ ] Todas las pruebas pasan
+- [ ] Código sin errores
+- [ ] Documentación actualizada
+- [ ] Incidencia actualizada
+- [ ] Tareas marcadas como completadas
+
+## Comunicación con el Usuario
+
+### Cuando se Solicita Algo
+
+- ✅ **SIEMPRE** hacer lo solicitado O explicar por qué no se hizo
+- ✅ **SIEMPRE** informar del resultado (éxito o fallo)
+- ✅ **SIEMPRE** proporcionar detalles si algo falla
+- ❌ **NUNCA** dejar solicitudes sin respuesta
+- ❌ **NUNCA** asumir que algo está hecho sin verificarlo
+
+### Ejemplos de Respuestas Correctas
+
+✅ **GOOD:**
+- "Incidencia creada en GitHub: #123"
+- "No pude crear la incidencia porque el label 'enhancement' no existe. Creé la incidencia sin labels: #123"
+- "Tarea completada. Actualicé la incidencia #123 con el progreso."
+
+❌ **BAD:**
+- "Listo" (sin verificar)
+- "Hecho" (sin detalles)
+- (Sin respuesta)
+
+## Herramientas de Seguimiento
+
+### GitHub CLI (gh)
+
+- ✅ **SIEMPRE** usar `gh issue create` para crear incidencias
+- ✅ **SIEMPRE** usar `gh issue list` para ver incidencias
+- ✅ **SIEMPRE** usar `gh issue view` para ver detalles
+- ✅ **SIEMPRE** usar `gh issue comment` para actualizar progreso
+
+### Comandos Útiles
+
+```bash
+# Crear incidencia
+gh issue create --title "Título" --body-file archivo.md
+
+# Listar incidencias
+gh issue list
+
+# Ver incidencia
+gh issue view <número>
+
+# Comentar en incidencia
+gh issue comment <número> --body "Progreso actualizado"
+```
+
+## Integración con TDD
+
+### Documentación de Progreso
+
+- ✅ **SIEMPRE** actualizar incidencia después de cada fase
+- ✅ **SIEMPRE** documentar qué pruebas pasan/fallan
+- ✅ **SIEMPRE** documentar qué código se implementó
+- ✅ **SIEMPRE** documentar qué se refactorizó
+
+### Ejemplo de Actualización
+
+```markdown
+## Progreso Actualizado - Fase 1.2 GREEN
+
+- ✅ Implementado `canAccessPanel()` en modelo User
+- ✅ Implementados métodos de verificación de roles
+- ✅ 36 pruebas unitarias pasando
+- ⏳ Pendiente: Refactor de código
+```
+
+---
+
+**RECUERDA: El workflow es parte del desarrollo. Gestión adecuada de tareas e incidencias es esencial.**

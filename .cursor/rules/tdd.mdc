@@ -1,0 +1,350 @@
+---
+alwaysApply: true
+---
+# ⚠️ TEST-DRIVEN DEVELOPMENT (TDD) - OBLIGATORIO ⚠️
+
+**ESTAS REGLAS SON LA LEY. DEBEN SEGUIRSE ESTRICTAMENTE EN TODO EL DESARROLLO.**
+
+## Principio Fundamental
+
+**TDD es el garante de calidad. Las pruebas NO son opcionales, son el requisito previo para cualquier código de producción.**
+
+## ⚠️ CRITICAL: TDD Estricto - Red-Green-Refactor
+
+**IMPORTANT: NUNCA ESCRIBIR CÓDIGO SIN PRUEBA QUE FALLE PRIMERO**
+
+### Ciclo TDD Obligatorio
+
+1. **RED 🔴 - Escribir Prueba que Falle**
+   - ✅ **SIEMPRE** escribir la prueba ANTES del código
+   - ✅ **SIEMPRE** verificar que la prueba falla por la razón correcta
+   - ✅ **SIEMPRE** documentar qué debe fallar y por qué
+   - ❌ **NUNCA** escribir código sin prueba previa
+
+2. **GREEN 🟢 - Hacer que la Prueba Pase**
+   - ✅ **SIEMPRE** escribir el código MÍNIMO necesario para que pase
+   - ✅ **SIEMPRE** ejecutar pruebas después de cada cambio
+   - ✅ **SIEMPRE** verificar que no se rompieron pruebas anteriores
+   - ❌ **NUNCA** escribir más código del necesario
+
+3. **REFACTOR 🔵 - Mejorar Código**
+   - ✅ **SIEMPRE** mejorar código manteniendo pruebas en verde
+   - ✅ **SIEMPRE** eliminar duplicación
+   - ✅ **SIEMPRE** mejorar legibilidad y mantenibilidad
+   - ✅ **SIEMPRE** verificar que todas las pruebas siguen pasando
+   - ❌ **NUNCA** refactorizar sin pruebas que garanticen el comportamiento
+
+## ⚠️ CRITICAL: Coherencia de Pruebas con Requerimientos
+
+**IMPORTANT: LAS PRUEBAS DEBEN ESTAR CONSTRUIDAS CONFORME AL REQUERIMIENTO FUNCIONAL, EL PLAN Y EL DISEÑO DEL PROYECTO**
+
+### Antes de Escribir Código
+
+1. ✅ **SIEMPRE** revisar requerimientos funcionales
+2. ✅ **SIEMPRE** revisar el plan del proyecto
+3. ✅ **SIEMPRE** revisar el diseño del proyecto
+4. ✅ **SIEMPRE** diseñar pruebas completas ANTES de implementar
+5. ✅ **SIEMPRE** verificar que las pruebas cubren todos los casos de uso
+6. ❌ **NUNCA** escribir código sin tener estructura de coherencia en las pruebas
+
+### Estructura de Pruebas
+
+Las pruebas deben cubrir:
+
+1. **Pruebas Unitarias** - Lógica de negocio, modelos, enums, servicios
+2. **Pruebas Funcionales** - Endpoints, rutas, permisos, CRUD completo
+3. **Pruebas Visuales (Dusk)** - UI completa, interacciones, regresión visual
+
+### Cobertura de Pruebas
+
+- ✅ **SIEMPRE** tener pruebas para cada funcionalidad descrita en requerimientos
+- ✅ **SIEMPRE** verificar permisos y autorización
+- ✅ **SIEMPRE** probar casos de éxito y casos de error
+- ✅ **SIEMPRE** probar validaciones
+- ✅ **SIEMPRE** probar edge cases
+- ❌ **NUNCA** dar por terminado sin verificar cobertura completa
+
+## ⚠️ CRITICAL: Pruebas como Documentación Viva
+
+**IMPORTANT: LAS PRUEBAS SON LA DOCUMENTACIÓN DEL COMPORTAMIENTO ESPERADO**
+
+### Nombres de Pruebas
+
+- ✅ **SIEMPRE** usar nombres descriptivos que expliquen qué se prueba
+- ✅ **SIEMPRE** usar formato `test_what_should_happen_when_condition()`
+- ❌ **NUNCA** usar nombres genéricos como `test1()`, `test_user()`
+
+Ejemplos:
+```php
+// ✅ GOOD
+public function test_admin_can_create_user(): void
+public function test_operator_cannot_access_users_create(): void
+public function test_validation_requires_unique_email(): void
+
+// ❌ BAD
+public function test_create(): void
+public function test_user(): void
+```
+
+### Organización de Pruebas
+
+- ✅ **SIEMPRE** agrupar pruebas relacionadas en la misma clase
+- ✅ **SIEMPRE** usar `setUp()` para datos comunes
+- ✅ **SIEMPRE** usar `StagingSeeder` o datos consistentes para pruebas funcionales
+- ✅ **SIEMPRE** limpiar datos entre pruebas (`RefreshDatabase`)
+
+## ⚠️ CRITICAL: Verificación Antes de Declarar Completado
+
+**IMPORTANT: NO DECLARAR COMPLETADO SIN VERIFICAR QUE LAS PRUEBAS ESTÁN CORRECTAS Y PASAN**
+
+### Proceso Obligatorio
+
+1. ✅ **SIEMPRE** ejecutar todas las pruebas relacionadas
+2. ✅ **SIEMPRE** verificar que las pruebas pasan
+3. ✅ **SIEMPRE** verificar que las pruebas están bien escritas
+4. ✅ **SIEMPRE** verificar que las pruebas cubren el requerimiento funcional
+5. ✅ **SIEMPRE** verificar que no hay pruebas duplicadas o innecesarias
+6. ❌ **NUNCA** declarar completado sin ejecutar pruebas
+7. ❌ **NUNCA** declarar completado si las pruebas fallan
+8. ❌ **NUNCA** declarar completado si las pruebas no están correctas
+
+### Pregunta Obligatoria
+
+**Antes de declarar cualquier tarea como completada, preguntarse:**
+- ¿Las pruebas están construidas conforme al requerimiento funcional?
+- ¿Las pruebas están construidas conforme al plan?
+- ¿Las pruebas están construidas conforme al diseño?
+- ¿Cómo sé si las pruebas pasan o no si no tengo una estructura de coherencia?
+
+## Entorno de Pruebas
+
+### Configuración
+
+- ✅ **SIEMPRE** usar `phpunit.xml` para configuración de entorno de pruebas
+- ✅ **SIEMPRE** configurar timezone fijo para pruebas (`APP_TIMEZONE` en `phpunit.xml`)
+- ✅ **SIEMPRE** usar base de datos separada para pruebas (SQLite en memoria recomendado)
+- ✅ **SIEMPRE** usar `StagingSeeder` para datos consistentes en pruebas funcionales
+- ✅ **SIEMPRE** marcar sistema como instalado (`markSystemAsInstalled()`) cuando sea necesario
+
+### Datos de Prueba
+
+- ✅ **SIEMPRE** usar `StagingSeeder` para precargar datos realistas
+- ✅ **SIEMPRE** obtener usuarios de prueba por email específico del seeder
+- ✅ **SIEMPRE** usar factories solo cuando sea necesario crear datos específicos
+- ❌ **NUNCA** crear usuarios genéricos en cada prueba si ya existen en el seeder
+
+## Tipos de Pruebas
+
+### Pruebas Unitarias
+
+**Propósito:** Verificar lógica de negocio aislada
+
+```php
+// ✅ GOOD: Prueba unitaria clara y enfocada
+public function test_user_can_parameterize_when_admin(): void
+{
+    $admin = User::factory()->admin()->create();
+    $this->assertTrue($admin->canParameterize());
+}
+```
+
+**Ubicación:** `tests/Unit/`
+
+### Pruebas Funcionales
+
+**Propósito:** Verificar funcionalidad completa (HTTP, permisos, CRUD)
+
+```php
+// ✅ GOOD: Prueba funcional con datos del seeder
+public function test_admin_can_create_user(): void
+{
+    $admin = User::where('email', 'admin@cortex-ia.com.co')->firstOrFail();
+    
+    $response = $this->actingAs($admin)->post('/operator/users', [
+        'name' => 'Nuevo Usuario',
+        'email' => 'nuevo@example.com',
+        'password' => 'password123',
+        'role' => UserRole::CLIENT->value,
+    ]);
+    
+    $response->assertStatus(302);
+    $this->assertDatabaseHas('users', ['email' => 'nuevo@example.com']);
+}
+```
+
+**Ubicación:** `tests/Feature/`
+
+### Pruebas Visuales (Dusk)
+
+**Propósito:** Verificar UI completa y regresión visual
+
+```php
+// ✅ GOOD: Prueba visual con screenshot
+public function test_users_list_page_visual(): void
+{
+    $this->browse(function (Browser $browser) {
+        $operator = User::where('email', 'operador@cortex-ia.com.co')->firstOrFail();
+        
+        $browser->loginAs($operator)
+            ->visit('/operator/users')
+            ->waitFor('.fi-main-content', 10)
+            ->pause(1000)
+            ->assertScreenshot('users-list-page');
+    });
+}
+```
+
+**Ubicación:** `tests/Browser/`
+
+## Filament 5.x Testing
+
+### Testing Resources
+
+- ✅ **SIEMPRE** probar acceso a recursos basado en permisos
+- ✅ **SIEMPRE** probar acciones (Create, Edit, Delete, View) con control de visibilidad
+- ✅ **SIEMPRE** probar tabs y filtros
+- ✅ **SIEMPRE** probar búsqueda y ordenamiento
+
+### Testing Tables
+
+- ✅ **SIEMPRE** probar columnas visibles
+- ✅ **SIEMPRE** probar acciones de tabla con permisos
+- ✅ **SIEMPRE** probar filtros y búsqueda
+- ✅ **SIEMPRE** probar ordenamiento
+
+### Testing Schemas/Forms
+
+- ✅ **SIEMPRE** probar validaciones
+- ✅ **SIEMPRE** probar campos condicionales (password opcional en edit)
+- ✅ **SIEMPRE** probar componentes específicos (ToggleButtons, Toggle, etc.)
+
+## Laravel 12 Testing
+
+### HTTP Tests
+
+- ✅ **SIEMPRE** usar `actingAs()` para autenticación
+- ✅ **SIEMPRE** verificar códigos de estado correctos (200, 403, 422, etc.)
+- ✅ **SIEMPRE** verificar respuestas JSON cuando corresponda
+- ✅ **SIEMPRE** verificar base de datos con `assertDatabaseHas()` / `assertDatabaseMissing()`
+
+### Database Tests
+
+- ✅ **SIEMPRE** usar `RefreshDatabase` trait
+- ✅ **SIEMPRE** limpiar datos entre pruebas
+- ✅ **SIEMPRE** usar transacciones cuando sea necesario
+
+### Browser Tests (Dusk)
+
+- ✅ **SIEMPRE** usar `DatabaseMigrations` para Dusk
+- ✅ **SIEMPRE** marcar sistema como instalado en `setUp()`
+- ✅ **SIEMPRE** usar `waitFor()` en lugar de `pause()` cuando sea posible
+- ✅ **SIEMPRE** capturar screenshots para regresión visual
+
+## Errores Comunes a Evitar
+
+### ❌ BAD: Escribir código sin prueba
+
+```php
+// ❌ BAD: Código sin prueba previa
+public function canAccessPanel(Panel $panel): bool
+{
+    return $this->isAdmin();
+}
+```
+
+### ✅ GOOD: Prueba primero, código después
+
+```php
+// ✅ GOOD: Prueba primero
+public function test_user_can_access_operator_panel_when_admin(): void
+{
+    $admin = User::factory()->admin()->create();
+    $panel = \Filament\Facades\Filament::getPanel('operator');
+    $this->assertTrue($admin->canAccessPanel($panel));
+}
+
+// Luego implementar código mínimo
+public function canAccessPanel(Panel $panel): bool
+{
+    return $this->isAdmin();
+}
+```
+
+### ❌ BAD: Pruebas sin coherencia con requerimientos
+
+```php
+// ❌ BAD: Prueba genérica sin relación con requerimiento
+public function test_user(): void
+{
+    $user = User::factory()->create();
+    $this->assertNotNull($user);
+}
+```
+
+### ✅ GOOD: Prueba específica según requerimiento
+
+```php
+// ✅ GOOD: Prueba específica del requerimiento funcional
+public function test_tabs_show_correct_badges(): void
+{
+    $operator = User::where('email', 'operador@cortex-ia.com.co')->firstOrFail();
+    $allCount = User::count();
+    $staffCount = User::where('role', UserRole::STAFF)->count();
+    
+    $response = $this->actingAs($operator)->get('/operator/users');
+    
+    $response->assertStatus(200);
+    $response->assertSee((string) $allCount, false);
+    $response->assertSee((string) $staffCount, false);
+}
+```
+
+## Checklist de TDD
+
+### Antes de Escribir Código
+
+- [ ] ¿Revisé los requerimientos funcionales?
+- [ ] ¿Revisé el plan del proyecto?
+- [ ] ¿Revisé el diseño del proyecto?
+- [ ] ¿Diseñé todas las pruebas necesarias?
+- [ ] ¿Las pruebas cubren todos los casos de uso?
+- [ ] ¿Las pruebas están bien estructuradas?
+
+### Durante Desarrollo (RED)
+
+- [ ] ¿Escribí la prueba primero?
+- [ ] ¿La prueba falla por la razón correcta?
+- [ ] ¿Documenté qué debe fallar y por qué?
+
+### Durante Implementación (GREEN)
+
+- [ ] ¿Escribí código mínimo para que pase?
+- [ ] ¿Ejecuté pruebas después de cada cambio?
+- [ ] ¿Verifiqué que no se rompieron pruebas anteriores?
+
+### Después de Implementación (REFACTOR)
+
+- [ ] ¿Mejoré el código manteniendo pruebas en verde?
+- [ ] ¿Eliminé duplicación?
+- [ ] ¿Mejoré legibilidad?
+- [ ] ¿Todas las pruebas siguen pasando?
+
+### Antes de Declarar Completado
+
+- [ ] ¿Todas las pruebas pasan?
+- [ ] ¿Las pruebas están correctas?
+- [ ] ¿Las pruebas cubren el requerimiento funcional?
+- [ ] ¿Las pruebas están construidas conforme al plan?
+- [ ] ¿Las pruebas están construidas conforme al diseño?
+- [ ] ¿Tengo estructura de coherencia en las pruebas?
+
+## Referencias
+
+- **Laravel Testing:** https://laravel.com/docs/12.x/testing
+- **Filament Testing:** https://filamentphp.com/docs/5.x/testing
+- **TDD Methodology:** Red-Green-Refactor cycle
+- **Test Coverage:** > 80% target
+
+---
+
+**RECUERDA: TDD es el garante de calidad. Las pruebas son el requisito previo, no una opción.**
