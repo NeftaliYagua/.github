@@ -4,7 +4,6 @@
 # Si falla con FORBIDDEN: https://github.com/settings/applications
 # ? GitHub CLI ? Configure ? authorize Sponsors, o pegar bio en el dashboard.
 set -euo pipefail
-
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BIO_FILE="${ROOT}/docs/SPONSORS_BIO.md"
 
